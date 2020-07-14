@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<title>Logopedjobb.se</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <style>
+h2 {font-size: 1px;}
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("woman-in-gray-sweater-drinking-coffee-3759089.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+    h3 {color: w3-text-white;}
+</style>
+  </head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="index.html" class="w3-button w3-block w3-black">Hem</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="index2.html" class="w3-button w3-block w3-black">Om</a>
+    </div>
+</div>
+</div>
+  
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag"></span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-border-white" style="font-size:50px"><br>Logopedjobb.se<br><h4><i>Bara jobb för logopeder</i></h4></span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-light-grey"></span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:400px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Lediga jobb</span></h5></div>
+    <div
+        id="afWidgetContainer"
+        data-limit="32"
+        data-showexpired="false"
+        data-q="logoped"
+        data-places="Stockholms län"
+        data-modal="false"
+    style="
+                text-align: "left";
+                font-weight: 500;
+                border: 3px solid #733ACA;
+                width: 60%;
+                margin: 10px auto;
+                border-radius: 5px;
+              "
+        >
+    </div
+    >
+    <div><strong>Antal lediga jobb:</strong><div id="afJobCount"></div></div>
+
+  <!-- Script for AFWidget -->
+<script src="https://widgets.jobtechdev.se/alljobads/script/AfPbWidget.js"></script>
+<div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Baserad på CSS-mall från <a href="https://www.w3schools.com/w3css/default.asp" title="" target="_blank" class="w3-hover-text-green">W3Schools.com</a></p>
+</footer>
+</body>
+</html>
+
