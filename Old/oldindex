@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<title>Logopedjobb.se</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
+h2 {font-size: 1px;}
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://logopedjobb.github.io/LOG101/Header1.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+    h3 {color: w3-text-white;}
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #A9A9A9}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+</head>
+<body>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="index3.html" class="w3-button w3-block w3-black">Hem</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="index2.html" class="w3-button w3-block w3-black">Om</a>
+    </div>
+</div>
+</div>
+  
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag"></span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-border-white" style="font-size:50px"><br>Logopedjobb.se<br><h4><i>Bara jobb för logopeder</i></h4></span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-light-grey"></span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- Dropdown Menu -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:400px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Lediga jobb</span></h5></div>
+<i>Välj inom vilket geografiskt område du vill se lediga jobb</i>
+<br>
+<br>
+<div class="dropdown">
+  <button class="dropbtn">  Område </button>
+  <div class="dropdown-content">
+  <a href="index.html"> Hela Sverige </a>
+  <a href="county/01stockholmslan.html">Stockholms län</a>
+  <a href="county/03uppsalalan.html">Uppsala län</a>
+  <a href="county/04sodermanlandslan.html">Södermanlands län</a>
+  <a href="county/05ostergotlandslan.html">Östergötlands län</a>
+    <a href="county/06jonkopingslan.html">Jönköpings län</a>
+    <a href="county/07kronobergslan.html">Kronobergs län</a>
+    <a href="county/08kalmarlan.html">Kalmar län</a>
+    <a href="county/09gotlandslan.html">Gotlands län</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 4</a>
+</div>
+  </div>
+<!--
+
+10 Blekinge län
+
+12 Skåne län
+
+13 Hallands län
+
+14 Västra Götalands län
+
+17 Värmlands län
+
+18 Örebro län
+
+19 Västmanlands län
+
+20 Dalarnas län
+
+21 Gävleborgs län
+
+22 Västernorrlands län
+
+23 Jämtlands län
+
+24 Västerbottens län
+
+25 Norrbottens län
+-->
+<br>
+<br>
+<!-- End page content -->
+</div>
+      
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>                                       www.logopedjobb.se                                       </p>
+</footer>
+  </body>
+</html>
