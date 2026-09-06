@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logopedjobb - Lediga Tjänster</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .status-container {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--muted);
+    }
+
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .job-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: border-color 0.2s;
+    }
+
+    .job-card:hover {
+      border-color: var(--primary);
+    }
+
+    .job-title {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+    }
+
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .job-snippet {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #334155;
+      margin-bottom: 1rem;
+    }
+
+    .job-link {
+      display: inline-block;
+      text-decoration: none;
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .job-link:hover {
+      background-color: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Logopedjobb</h1>
+      <p class="subtitle">Aktuella lediga tjänster hämtade via JobAd Links</p>
+    </header>
+
+    <main id="app">
+      <div id="status" class="status-container">Laddar annonser...</div>
+      <div id="job-list" class="job-list"></div>
+    </main>
+  </div>
+
+  <script>
+    const API_BASE_URL = "https://joblinks.api.jobtechdev.se/joblinks";
+    const SEARCH_QUERY = "logoped";
+    const RESULTS_LIMIT = 50;
+
+    const statusEl = document.getElementById("status");
+    const jobListEl = document.getElementById("job-list");
+
+    async function fetchLogopedJobs() {
+      const params = new URLSearchParams({
+        q: SEARCH_QUERY,
+        limit: RESULTS_LIMIT,
+        sort: "pubdate-desc"
+      });
+
+      try {
+        const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        renderJobs(data.hits || []);
+      } catch (error) {
+        statusEl.textContent = "Kunde inte ladda jobbannonser. Försök igen senare.";
+        console.error("Fel vid hämtning av jobb:", error);
+      }
+    }
+
+    function renderJobs(ads) {
+      if (ads.length === 0) {
+        statusEl.textContent = "Inga lediga jobb hittades för närvarande.";
+        return;
+      }
+
+      statusEl.style.display = "none";
+
+      ads.forEach(ad => {
+        const card = document.createElement("article");
+        card.className = "job-card";
+
+        const title = ad.headline || "Titel saknas";
+        const employer = ad.employer?.name || "Arbetsgivare anges ej";
+        const location = ad.workplace_address?.municipality || "Ort anges ej";
+        const pubDate = ad.publication_date 
+          ? new Date(ad.publication_date).toLocaleDateString("sv-SE") 
+          : "Okänt datum";
+        const description = ad.description?.text 
+          ? ad.description.text.substring(0, 160) + "..." 
+          : "Beskrivning saknas.";
+        const externalUrl = ad.source_links?.[0]?.url || ad.application?.url || "#";
+
+        card.innerHTML = `
+          <h2 class="job-title">${escapeHtml(title)}</h2>
+          <div class="job-meta">
+            <span><strong>Arbetsgivare:</strong> ${escapeHtml(employer)}</span>
+            <span><strong>Ort:</strong> ${escapeHtml(location)}</span>
+            <span><strong>Publicerad:</strong> ${pubDate}</span>
+          </div>
+          <p class="job-snippet">${escapeHtml(description)}</p>
+          <a href="${encodeURI(externalUrl)}" target="_blank" rel="noopener noreferrer" class="job-link">
+            Visa originalannons
+          </a>
+        `;
+
+        jobListEl.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchLogopedJobs);
+  </script>
+</body>
+</html>
